@@ -1,0 +1,17 @@
+Django>=5.1,<5.2
+djangorestframework>=3.15,<3.16
+djangorestframework-simplejwt>=5.3,<5.4
+psycopg[binary]>=3.2,<3.3
+celery>=5.4,<5.5
+redis>=5.2,<5.3
+drf-spectacular>=0.28,<0.29
+django-cors-headers>=4.6,<4.7
+gunicorn>=23.0,<23.1
+python-dotenv>=1.0,<1.1
+
+# Dev/Testing
+pytest>=8.3,<8.4
+pytest-django>=4.9,<4.10
+black>=24.8,<25.0
+ruff>=0.7,<0.8
+pre-commit>=4.0,<4.1
