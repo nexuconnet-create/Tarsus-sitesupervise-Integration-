@@ -25,5 +25,5 @@ urlpatterns = [
     # App URLs will be included here as they are developed
     # path("api/v1/projects/", include("backend.apps.projects.urls")),
     # path("api/v1/inspections/", include("backend.apps.inspections.urls")),
-    # path("api/v1/scans/", include("backend.apps.scans.urls")),
+    path("api/v1/scans/", include("apps.scans.urls")),
 ]

@@ -1,0 +1,394 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "SiteSupervise Tersus API",
+        "version": "1.0.0",
+        "description": "Backend API for SiteSupervise integrating with Tersus MVP S1 Handheld Scanner."
+    },
+    "paths": {
+        "/api/v1/auth/token/": {
+            "post": {
+                "operationId": "v1_auth_token_create",
+                "description": "Takes a set of user credentials and returns an access and refresh JSON web\ntoken pair to prove the authentication of those credentials.",
+                "tags": [
+                    "v1"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TokenObtainPair"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TokenObtainPair"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TokenObtainPair"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TokenObtainPair"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/token/refresh/": {
+            "post": {
+                "operationId": "v1_auth_token_refresh_create",
+                "description": "Takes a refresh type JSON web token and returns an access type JSON web\ntoken if the refresh token is valid.",
+                "tags": [
+                    "v1"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TokenRefresh"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TokenRefresh"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TokenRefresh"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TokenRefresh"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/scans/{session_id}/finalize/": {
+            "post": {
+                "operationId": "v1_scans_finalize_create",
+                "description": "Handle POST request to mark the scan upload as complete.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "session_id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "jwtAuth": []
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FinalizeUploadResponse"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/scans/{session_id}/metadata/": {
+            "post": {
+                "operationId": "v1_scans_metadata_create",
+                "description": "Handle POST request to attach metadata to an existing scan session.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "session_id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ScanMetadata"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ScanMetadata"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ScanMetadata"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "jwtAuth": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ScanMetadata"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/scans/session/": {
+            "post": {
+                "operationId": "v1_scans_session_create",
+                "description": "Handle POST request to create a scan session.",
+                "tags": [
+                    "v1"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StartSession"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StartSession"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StartSession"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "security": [
+                    {
+                        "jwtAuth": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SessionResponse"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "FinalizeUploadResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "default": "processing"
+                    },
+                    "message": {
+                        "type": "string",
+                        "default": "Scan data queued for processing."
+                    }
+                }
+            },
+            "Location": {
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    },
+                    "longitude": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    },
+                    "elevation": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    }
+                }
+            },
+            "ScanMetadata": {
+                "type": "object",
+                "description": "Serializer for validating and processing incoming scan metadata.\nExtracts nested location dictionary into flattened model fields.",
+                "properties": {
+                    "location": {
+                        "$ref": "#/components/schemas/Location"
+                    },
+                    "operator_id": {
+                        "type": "string",
+                        "maxLength": 100
+                    },
+                    "notes": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SessionResponse": {
+                "type": "object",
+                "description": "Serializer for the response payload of starting a scan session,\nincluding the generated S3 upload URL.",
+                "properties": {
+                    "session_id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "readOnly": true
+                    },
+                    "upload_url": {
+                        "type": "string",
+                        "readOnly": true
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/StatusEnum"
+                    }
+                },
+                "required": [
+                    "session_id",
+                    "upload_url"
+                ]
+            },
+            "StartSession": {
+                "type": "object",
+                "description": "Serializer for validating incoming data when starting a scan session.",
+                "properties": {
+                    "project_id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "nullable": true
+                    },
+                    "scanner_id": {
+                        "type": "string",
+                        "maxLength": 100
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "sensors_used": {},
+                    "expected_size_mb": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    }
+                },
+                "required": [
+                    "scanner_id"
+                ]
+            },
+            "StatusEnum": {
+                "enum": [
+                    "initialized",
+                    "uploading",
+                    "processing",
+                    "completed",
+                    "failed"
+                ],
+                "type": "string",
+                "description": "* `initialized` - Initialized\n* `uploading` - Uploading\n* `processing` - Processing\n* `completed` - Completed\n* `failed` - Failed"
+            },
+            "TokenObtainPair": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "writeOnly": true
+                    },
+                    "password": {
+                        "type": "string",
+                        "writeOnly": true
+                    },
+                    "access": {
+                        "type": "string",
+                        "readOnly": true
+                    },
+                    "refresh": {
+                        "type": "string",
+                        "readOnly": true
+                    }
+                },
+                "required": [
+                    "access",
+                    "password",
+                    "refresh",
+                    "username"
+                ]
+            },
+            "TokenRefresh": {
+                "type": "object",
+                "properties": {
+                    "access": {
+                        "type": "string",
+                        "readOnly": true
+                    },
+                    "refresh": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "access",
+                    "refresh"
+                ]
+            }
+        },
+        "securitySchemes": {
+            "jwtAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
