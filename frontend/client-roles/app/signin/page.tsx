@@ -45,6 +45,7 @@ function SignInContent() {
   const storeUser = useAuthStore((s) => s.user);
   const storeMemberships = useAuthStore((s) => s.memberships);
 
+  /*
   useEffect(() => {
     if (storeUser) {
       if (storeUser.must_change_password) {
@@ -76,6 +77,7 @@ function SignInContent() {
       router.replace("/select-org");
     }
   }, [router, searchParams, storeUser, storeMemberships]);
+  */
 
   const loginMutation = useMutation({
     mutationFn: ({ email, password }: { email: string; password: string }) =>
@@ -168,7 +170,7 @@ function SignInContent() {
         {
           org: "Advance Globe",
           org_slug: "advanceglobe",
-          is_admin: true,
+          is_admin: false,
           projects: [
             {
               name: "Advance First Project",
