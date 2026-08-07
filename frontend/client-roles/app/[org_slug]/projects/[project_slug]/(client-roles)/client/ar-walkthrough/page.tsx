@@ -12,7 +12,7 @@ import SessionHeader from '@/components/ar/SessionHeader';
 import AnnotationCanvas from '@/components/ar/AnnotationCanvas';
 import AnnotationToolbar from '@/components/ar/AnnotationToolbar';
 import SessionControls from '@/components/ar/SessionControls';
-import EngineerHeader from '../../../engineer/(office)/components/EngineerHeader';
+
 import toast from 'react-hot-toast';
 
 interface RemoteSession {
@@ -148,7 +148,10 @@ export default function ArWalkThroughPage() {
   if (loading) {
     return (
       <div>
-        <EngineerHeader title="AR Walkthrough" badge="Live Site View" />
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-bold text-gray-900">AR Walkthrough</h1>
+          <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Live Site View</span>
+        </div>
         <div className="p-8 max-w-7xl mx-auto space-y-8">
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
             <div className="min-h-[400px] flex items-center justify-center">
@@ -163,7 +166,10 @@ export default function ArWalkThroughPage() {
   if (error || !session) {
     return (
       <div>
-        <EngineerHeader title="AR Walkthrough" badge="Live Site View" />
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-bold text-gray-900">AR Walkthrough</h1>
+          <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Live Site View</span>
+        </div>
         <div className="p-8 max-w-7xl mx-auto space-y-8">
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-10 text-center">
             <p className="text-gray-500">{error || 'No active AR session found'}</p>
@@ -178,7 +184,10 @@ export default function ArWalkThroughPage() {
 
   return (
     <div className="pb-24 bg-gray-50 min-h-screen">
-      <EngineerHeader title="AR Walkthrough" badge="Live Site View" />
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold text-gray-900">AR Walkthrough</h1>
+        <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Live Site View</span>
+      </div>
 
       <div className="p-8 max-w-7xl mx-auto space-y-8">
         <SessionHeader
