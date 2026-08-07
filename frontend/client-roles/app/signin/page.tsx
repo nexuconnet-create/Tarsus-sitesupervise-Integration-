@@ -45,6 +45,7 @@ function SignInContent() {
   const storeUser = useAuthStore((s) => s.user);
   const storeMemberships = useAuthStore((s) => s.memberships);
 
+  /*
   useEffect(() => {
     if (storeUser) {
       if (storeUser.must_change_password) {
@@ -76,6 +77,7 @@ function SignInContent() {
       router.replace("/select-org");
     }
   }, [router, searchParams, storeUser, storeMemberships]);
+  */
 
   const loginMutation = useMutation({
     mutationFn: ({ email, password }: { email: string; password: string }) =>
@@ -153,7 +155,34 @@ function SignInContent() {
     setError("");
     setPasswordError("");
 
-    loginMutation.mutate({ email: formData.email, password: formData.password });
+    // Bypassing API for presentation purposes
+    setAuth(
+      "mock_access_token",
+      "mock_refresh_token",
+      {
+        email: formData.email,
+        name: "Demo User",
+        uuid: "mock-uuid-123",
+        must_change_password: false,
+        safety_onboarding_completed: true,
+      },
+      [
+        {
+          org: "Advance Globe",
+          org_slug: "advanceglobe",
+          is_admin: false,
+          projects: [
+            {
+              name: "Advance First Project",
+              slug: "advancefirstproject",
+              role: "Government Agency",
+              uuid: "mock-uuid"
+            }
+          ]
+        }
+      ]
+    );
+    router.push("/advanceglobe/projects/advancefirstproject/onboarding");
   };
 
   return (
@@ -282,26 +311,26 @@ function SignInContent() {
               <span className="text-sm text-gray-600">
                 Don&apos;t have an account?
               </span>
-              <Link
-                prefetch={false} href="/register"
+              <a
+                href="/register"
                 className="text-sm font-bold text-[#021422] underline"
               >
                 Register
-              </Link>
+              </a>
             </div>
-            <Link
-              prefetch={false} href="/vendor-signin"
+            <a
+              href="/vendor-signin"
               className="text-sm text-gray-500 underline"
             >
               Vendor Sign In
-            </Link>
-            <Link
-              prefetch={false} href="/admin-register"
+            </a>
+            <a
+              href="/admin-register"
               className="flex items-center justify-center gap-2 text-sm text-[#021422] font-semibold mt-4"
             >
               <ShieldCheck size={16} />
-              Admin / Company Registration
-            </Link>
+              Register as Admin
+            </a>
           </div>
         </div>
       </div>

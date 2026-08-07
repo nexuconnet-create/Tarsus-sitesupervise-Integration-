@@ -26,15 +26,7 @@ export default function SelectProjectPage() {
       return;
     }
 
-    const isAdminUser = memberships.some((m) => m.is_admin);
-    if (isAdminUser) {
-      const firstAdminOrg = memberships.find((m) => m.is_admin);
-      if (firstAdminOrg) {
-        router.prefetch(`/${firstAdminOrg.org_slug}/admin`);
-        router.replace(`/${firstAdminOrg.org_slug}/admin`);
-        return;
-      }
-    }
+
 
     if (memberships.length === 1) {
       const org = memberships[0];
