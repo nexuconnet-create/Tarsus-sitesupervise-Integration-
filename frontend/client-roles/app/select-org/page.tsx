@@ -62,7 +62,7 @@ export default function SelectOrgPage() {
   // Prefetch destination pages whenever memberships change
   useEffect(() => {
     memberships.forEach((m) => {
-      const dest = m.is_admin ? `/${m.org_slug}/admin` : `/${m.org_slug}/projects`;
+      const dest = `/${m.org_slug}/projects`;
       router.prefetch(dest);
     });
   }, [memberships, router]);
@@ -70,7 +70,7 @@ export default function SelectOrgPage() {
   const handleSelectOrg = (orgSlug: string) => {
     setSelectedOrg(orgSlug);
     const org = orgs.find((o) => o.org_slug === orgSlug);
-    const dest = org?.is_admin ? `/${orgSlug}/admin` : `/${orgSlug}/projects`;
+    const dest = `/${orgSlug}/projects`;
     router.prefetch(dest);
     router.replace(dest);
   };

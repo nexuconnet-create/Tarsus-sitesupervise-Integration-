@@ -33,7 +33,8 @@ export default function OrgProjectsPage({ params }: OrgProjectsPageProps) {
     if (projects.length === 0) {
       // Admins have no project memberships — send them to their admin panel
       if (isAdmin(org_slug)) {
-        router.replace(`/${org_slug}/admin`);
+        // We do not redirect to admin anymore for this client demo
+        router.replace("/select-org");
       } else {
         router.replace("/select-org");
       }
