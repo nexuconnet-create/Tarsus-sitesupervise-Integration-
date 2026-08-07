@@ -153,7 +153,34 @@ function SignInContent() {
     setError("");
     setPasswordError("");
 
-    loginMutation.mutate({ email: formData.email, password: formData.password });
+    // Bypassing API for presentation purposes
+    setAuth(
+      "mock_access_token",
+      "mock_refresh_token",
+      {
+        email: formData.email,
+        name: "Demo User",
+        uuid: "mock-uuid-123",
+        must_change_password: false,
+        safety_onboarding_completed: true,
+      },
+      [
+        {
+          org: "Advance Globe",
+          org_slug: "advanceglobe",
+          is_admin: true,
+          projects: [
+            {
+              name: "Advance First Project",
+              slug: "advancefirstproject",
+              role: "Government Agency",
+              uuid: "mock-uuid"
+            }
+          ]
+        }
+      ]
+    );
+    router.push("/advanceglobe/projects/advancefirstproject/government-agencies/tersus/ingestion-logs?clientType=Government+Agency");
   };
 
   return (
