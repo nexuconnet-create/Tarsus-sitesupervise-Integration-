@@ -1,0 +1,12 @@
+"use client";
+
+import { useState } from "react";
+import { MessageSquare, PhoneOff, Play, Send, Video } from "lucide-react";
+
+export default function RemoteAssistPage() {
+  const [connected, setConnected] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState(["Engineer: Camera feed is clear.", "Admin: Please inspect the north-east beam connection."]);
+  const send = () => { if (message.trim()) { setMessages((items) => [...items, `Admin: ${message.trim()}`]); setMessage(""); } };
+  return <div className="p-6 md:p-8 max-w-6xl"><h1 className="text-2xl md:text-3xl font-bold text-[#021422]">Remote Assist</h1><p className="text-gray-500 mt-2 mb-8">A simulated Digital Eye session for stakeholder review. No live camera or backend connection is used.</p><div className="grid lg:grid-cols-[1fr_340px] gap-6"><section className="bg-[#021422] rounded-xl min-h-[390px] flex flex-col"><div className="p-4 text-white border-b border-white/10 flex justify-between"><span className="flex gap-2 items-center"><Video size={18}/>Live headset stream</span><span className="text-xs text-green-300">{connected ? "Connected" : "Ready"}</span></div><div className="flex-1 grid place-items-center text-gray-300 text-center p-8"><div><Video size={34} className="mx-auto mb-4"/><p className="font-semibold">{connected ? "XR10 Site A #1" : "Select Join to start the demo"}</p></div></div><div className="p-4 border-t border-white/10"><button onClick={() => setConnected((value) => !value)} className="ml-auto flex items-center gap-2 bg-white text-[#021422] px-4 py-2 rounded-lg text-sm font-semibold">{connected ? <><PhoneOff size={16}/>End</> : <><Play size={16}/>Join</>}</button></div></section><aside className="bg-white rounded-xl border shadow-sm flex flex-col min-h-[390px]"><div className="p-4 border-b flex gap-2 font-semibold"><MessageSquare size={18} className="text-[#021422]"/>Session chat</div><div className="p-4 flex-1 space-y-3">{messages.map((item, index) => <p key={index} className="text-sm bg-gray-50 rounded-lg p-3">{item}</p>)}</div><form onSubmit={(event) => { event.preventDefault(); send(); }} className="p-3 border-t flex gap-2"><input value={message} onChange={(event) => setMessage(event.target.value)} className="min-w-0 flex-1 border rounded-lg px-3 text-sm" placeholder="Send a message"/><button className="p-2 bg-[#021422] text-white rounded-lg" aria-label="Send"><Send size={16}/></button></form></aside></div></div>;
+}

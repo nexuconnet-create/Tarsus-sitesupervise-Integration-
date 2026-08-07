@@ -1,0 +1,15 @@
+// export { default as logo } from "public/images/logo.png";
+export { default as logo_group } from "public/images/control-system 1.svg";
+export { default as helmet } from "/images/helmet.png";
+export { default as user_icon } from "/images/user (2).svg";
+export { default as setting_icon } from "/images/control-system 1.svg";
+export { default as mail } from "/images/control-system 1.svg";
+export { default as speaker } from "/images/control-system 1.svg";
+export { default as bulb } from "/images/control-system 1.svg";
+export { default as analytics } from "/images/control-system 1.svg";
+export { default as bin } from "/images/control-system 1.svg";
+export { default as map } from "/images/control-system 1.svg";
+export { default as users_outline } from "/images/control-system 1.svg";
+export { default as search } from "/images/control-system 1.svg";
+export { default as pin_map } from "/images/control-system 1.svg";
+// export { default as logo } from "";
