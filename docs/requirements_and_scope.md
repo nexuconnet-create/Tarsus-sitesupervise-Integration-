@@ -38,4 +38,4 @@ The goal of the project is to establish a robust integration layer where the Ter
 | Name | Role | Date | Signature |
 |------|------|------|-----------|
 |      | Tersus Lead |      |           |
-|      | SiteSupervise PM | |           |
+|      | Government Agency - Client | |           |
