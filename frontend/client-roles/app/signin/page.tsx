@@ -283,20 +283,20 @@ function SignInContent() {
                 Don&apos;t have an account?
               </span>
               <Link
-                href="/register"
+                prefetch={false} href="/register"
                 className="text-sm font-bold text-[#021422] underline"
               >
                 Register
               </Link>
             </div>
             <Link
-              href="/vendor-signin"
+              prefetch={false} href="/vendor-signin"
               className="text-sm text-gray-500 underline"
             >
               Vendor Sign In
             </Link>
             <Link
-              href="/admin-register"
+              prefetch={false} href="/admin-register"
               className="flex items-center justify-center gap-2 text-sm text-[#021422] font-semibold mt-4"
             >
               <ShieldCheck size={16} />

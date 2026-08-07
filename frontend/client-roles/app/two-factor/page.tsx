@@ -123,7 +123,7 @@ function TwoFactorContent() {
             </button>
             <div className="flex items-center gap-4">
               <span className="text-sm font-medium text-gray-700">Don&apos;t Have an Account?</span>
-              <Link href="/register" className="border border-gray-800 px-5 py-2 rounded text-sm font-semibold hover:bg-gray-100 transition">
+              <Link prefetch={false} href="/register" className="border border-gray-800 px-5 py-2 rounded text-sm font-semibold hover:bg-gray-100 transition">
                 Register
               </Link>
             </div>
@@ -179,7 +179,7 @@ function TwoFactorContent() {
           <div className="md:hidden flex flex-col items-center gap-4 mt-8">
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-600">Don&apos;t have an account?</span>
-              <Link href="/register" className="text-sm font-bold text-[#021422] underline">Register</Link>
+              <Link prefetch={false} href="/register" className="text-sm font-bold text-[#021422] underline">Register</Link>
             </div>
           </div>
         </div>
