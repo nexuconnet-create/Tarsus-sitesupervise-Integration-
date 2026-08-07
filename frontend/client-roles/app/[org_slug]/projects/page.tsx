@@ -43,6 +43,7 @@ export default function OrgProjectsPage({ params }: OrgProjectsPageProps) {
 
   // Fetch projects from API to get uuid
   useEffect(() => {
+    /*
     if (!user) return;
     adminService.getProjects(org_slug)
       .then(res => {
@@ -53,6 +54,7 @@ export default function OrgProjectsPage({ params }: OrgProjectsPageProps) {
         setApiProjects(list);
       })
       .catch(() => {});
+    */
   }, [org_slug, user]);
 
   const handleSelectProject = (projectSlug: string) => {

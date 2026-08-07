@@ -425,13 +425,14 @@ function ClientSidebarContent({
         </div>
 
         <div className="absolute1 bottom-0 w-full p-4 border-t border-gray-800">
-          <Link
-            href="/help"
+          <a
+            href="#"
+            onClick={(e) => e.preventDefault()}
             className="flex items-center gap-2 text-sm hover:bg-white/10 p-2 rounded transition-colors w-full"
           >
             <HelpCircle className="w-4 h-4" />
             <span>Help Center</span>
-          </Link>
+          </a>
           <button
             onClick={handleLogout}
             className="flex items-center gap-2 text-sm hover:bg-white/10 p-2 rounded transition-colors w-full mt-2 text-left"
