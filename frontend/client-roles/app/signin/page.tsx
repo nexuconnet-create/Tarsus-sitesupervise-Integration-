@@ -180,7 +180,7 @@ function SignInContent() {
         }
       ]
     );
-    router.push("/advanceglobe/projects/advancefirstproject/government-agencies/tersus/ingestion-logs?clientType=Government+Agency");
+    router.push("/advanceglobe/projects/advancefirstproject/onboarding");
   };
 
   return (
